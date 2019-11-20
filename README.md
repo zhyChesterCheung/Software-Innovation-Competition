@@ -16,6 +16,13 @@ According to the market, the existing mobile app only uses NLP technology to rea
 At the same time, "Auto-Notes" supports multiple people to record at the same time. It can extract the best record results from multiple sample records, greatly improving the recognition rate and making it more user-friendly.
 
 
+## 下面是项目的最终交稿作品
+
+<video id="video" controls="" preload="none" poster="">
+<source id="mp4" src="https://github.com/zhyChesterCheung/Software-Innovation-Competition/movie.mp4" type="video/mp4">
+</video>
+
+
 ## 项目目录
 
 - [上手指南](#上手指南)
