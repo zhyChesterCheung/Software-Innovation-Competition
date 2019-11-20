@@ -19,7 +19,7 @@ At the same time, "Auto-Notes" supports multiple people to record at the same ti
 ## 下面是项目的最终交稿作品
 
 <video id="video" controls="" preload="none" poster="">
-<source id="mp4" src="https://github.com/zhyChesterCheung/Software-Innovation-Competition/movie.mp4" type="video/mp4">
+<source id="mp4" src="https://github.com/zhyChesterCheung/Software-Innovation-Competition/blob/master/movie.mp4" type="video/mp4">
 </video>
 
 
