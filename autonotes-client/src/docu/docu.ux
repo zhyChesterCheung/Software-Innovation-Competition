@@ -1,0 +1,213 @@
+<template>
+        <!-- template里只能有一个根节点 -->
+        <div class="demo-page">
+            <!--最顶上是播放本次语音的界面-->
+            <!--第一个区域是摘要记录-->
+        <div class="head">
+          <!-- <text class="headtxt">播放录音</text>> -->
+          <image src="/Common/luyin.png" class="headimg"></image>
+             <div>
+              <input class="btn" id='c' type="button" value="播放" onclick="play()" />
+              <input class="btn" id='d' type="button" value="结束" onclick="pauseplay()" />
+             </div>>
+        </div>
+        
+        <div class="fenge"></div>
+            <text class="zhaiyao">摘要</text>
+            <div class="summary">
+                 <text class="sumtext">
+                    本文总结了十个可穿戴产品的设计原则，而这些原则，同样也是笔者认为是这个行业最吸引人的地方：
+                      1.为人们解决重复性问题；
+                      2.从人开始，而不是从机器开始；
+                      3.要引起注意，但不要刻意；
+                 </text>
+            </div>
+          <div class="fenge"></div>
+          <div class="tail">
+            <div class="tailhead">
+             <div class="address"> <image src="/Common/weizhi.png" class="tailimg"><text  class="tailtxt">中南大学 b座</text></div>>
+             <div class="date"> <image src="/Common/riqi.png" class="tailimg"></image><text  class="tailtxt">2019.11.7</text></image></div>>
+            </div>
+             <div class="记录"><text class="记录文字">
+                目前世界上有着几百种编程语言,我应该学哪个? 如何选择“正确”的编程语言进行学习?我所学的语言日后能否成为我获取好生活的保障?在这个问题上，很多人都曾经给出了他们都看法。但在我看来，这个问题答案其实非常简单：那就是JavaScript。
+             </text>></div>
+          </div>
+               <!-- <input class='btn1' type="button" value='测试1' onclick='change()'></input> -->
+        </div>
+</template>
+      
+
+
+
+
+      <script> 
+      import media from '@system.media'
+      import record from '@system.record'
+      import audio from '@system.audio'
+      import fetch from '@system.fetch'
+      //import marquee from '../node_modules/vue-marquee-ho/dist/vue-marquee.min.js'
+      
+      
+      export default {
+         
+        private: {
+          text: 'hhh..',
+          className: 'text-gray',
+          currentindex: undefined,
+          lyrics:[]/*将要拿到歌词是个数组*/,
+          test:'我很好\n不是吗',
+          print:undefined,
+          print2:undefined
+        },
+       
+       
+       
+        onInit(){
+        // var txt=
+
+        },
+
+
+        change(){
+         
+     
+         },
+
+         play(){
+  //currentindex='3'
+  console.log(`here`)
+      audio.play()//开始播放音频
+    audio.loop=true//循环播放
+    this.start=false
+    this.rotate = 'rotate'//添加播放动画效果
+           
+    },
+
+
+pauseplay(){
+ // currentindex='4'
+      audio.pause()//暂停音乐播放
+       this.start=true
+           
+    },
+         
+         
+         
+         
+         
+         }
+
+        
+        /**
+         * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+         * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+         */
+      
+          
+      
+        
+          
+      
+      </script>
+      
+      <style>
+     .btn{
+    width:300px;
+    height:100px ;
+    margin: 0 10px;
+    border-radius: 43px;
+    background-color:#DC143C;
+    color: #ffffff;
+  }
+      .zhaiyao{
+        font-size:50px;
+        margin:auto;
+        margin-bottom: 30px;
+      }
+      .tailhead{
+        width: 100%;
+        height: 42%;
+        margin-top: 0PX;
+      }
+      
+      .记录{
+        width: 100%;
+        height: 58%;
+        margin-top: 0px;
+      }
+      .记录文字{
+       width:100%;
+       height:100%;
+       margin-top: 0px;
+      }
+      .tail{
+        flex-direction: column;
+        /* justify-content: center; */
+       align-items: center;
+        width: 100%;
+        height:50%;
+      }
+      .tailimg{
+        height: 100%;
+        width:50%;
+        object-fit:contain;
+      }
+      .address{
+        width:50%;
+        height:10%;
+      }
+      .date{
+        width:50%;
+        height:10%;
+      }
+      .demo-page {
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       }
+      .fenge{
+        width:100%;
+        height:5px;
+        background-color:#f0f0f0;
+        margin-bottom: 20px;
+        margin-top: 30px;
+      }
+      .head{
+        width:100%;
+        height:20%;
+        flex-direction: column;
+       justify-content: center;
+       align-items: center;
+        
+      }
+      .headimg{
+        width:50px;
+        height:50px;
+        margin:  auto;
+      }
+     
+      .sumamary{
+        width:100%;
+        height: 30%;
+        background-color:#f0f0f0;
+      }
+    
+      .sumtext{
+       width: 100%;
+       height: 100%;
+      }
+     
+      .test{
+        width:1000px;
+        height:1000px;
+       color: aqua;
+       font-size:60px;
+      }
+      .btn1{
+        width: 100px;
+        height: 100px ;
+
+      }
+      
+      </style>
+      

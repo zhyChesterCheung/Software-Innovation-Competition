@@ -1,0 +1,130 @@
+<template>
+<div class="example">
+    <div class="marquee_box">
+      <div class="marquee_text" style="margin-left:{{marqueeDistance}}px;font-size: {{size}}px;">
+       <text class="roll">{{text}}</text>
+      </div>
+    </div>
+</div>
+</template>
+  
+<script>
+  import fetch from '@system.fetch'
+export default({
+  data: {
+     text: '快餐 特区 电脑 软件 雪白 区块链 强化学习 高级 大型 热爱 主席 司机 理事 立冬 结晶 动员 招标 投资 牵头',
+    marqueePace: 1,//滚动速度
+    marqueeDistance: 500,//初始滚动距离
+    size: 14,
+    orientation: 'left',//滚动方向
+    interval: 20, // 时间间隔
+    
+  },
+  
+
+  onInit () {
+    // 页面显示
+    var that = this;
+    that.text1='hh'
+    var length = this.text1.length * that.size;//文字长度
+    // var windowWidth = length
+    // that.setData({
+    //   length: length,
+    //   windowWidth: windowWidth,
+    // });
+    that.runMarquee();// 水平一行字滚动完了再按照原来的方向滚动
+
+
+  //   fetch.fetch({
+  //   //url:'http://geci.me/api/lyric/海阔天空/Beyond',
+  //   url:"http://s.geci.me/lrc/187/18757/1875769.lrc",
+  //   responseType: 'text',
+  //   success:res =>{
+  //     this.text= 'nihao'
+  //       //const data=JSON.parse(res)
+  //      this.text= res
+  //      //this.lyrics=data.split('\n')
+  //      //this.lyrics=this.text.split('\n')
+  //      this.split1(JSON.stringify(this.text))
+  //      //this.lyrics=this.text.split('\n')
+  
+  //   },
+  //   fail: function(data, code) {
+  //     this.text='失败'
+  //   console.log(`handling fail, errMsg = ${data}`)
+  //   console.log(`handling fail, errCode = ${code}`)
+  // }
+  // })
+  },
+
+  split1(text){
+  this.lyrics=text.split('\\r\\n')
+},
+
+
+
+
+
+
+
+ runMarquee() {
+    var that = this;
+    
+    var interval = setInterval(function () {
+      //文字一直移动到末端
+      if (-that.marqueeDistance < that.length) {
+       
+            
+       
+      } else {
+        clearInterval(interval);
+        that.marqueeDistance= that.marqueeDistance - 2
+        //that.marqueeDistance=200
+        
+        that.runMarquee();
+        that.text1='hh'
+      }
+    }, that.interval);
+  }
+})
+
+</script>
+
+  <style>
+  .roll{
+    height: 70px;
+    
+  }
+  
+  .example {
+  
+  width: 100%;
+  height: 70px;
+  background-color: #f2f2f2;
+  line-height: 70px;
+}
+
+.marquee_box {
+  width: 100%;
+  position: relative;
+}
+
+.marquee_text {
+ 
+  position: absolute;
+  top: 0;
+  display: flex;
+  height: 70px;
+  flex-direction: row;
+}
+
+.ad-image {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: 15px;
+}
+  
+  
+  
+  </style>

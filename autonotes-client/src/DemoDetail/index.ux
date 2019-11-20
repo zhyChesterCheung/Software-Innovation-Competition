@@ -1,0 +1,413 @@
+<import name="comp-title" src="../marquee/marquee2.ux"></import>
+
+<template>
+  <!-- template里只能有一个根节点 -->
+  <div class="demo-page">
+        <div class="head" >
+            <!-- <div class='headtext'><text class='htxt'>活动</text></div> -->
+            <div class='img1'> <image class="photo" src="/Common/timg.png" onclick="ontakePhoto()" ></image></div>
+
+            <div class='img2'><image class="photo1" src="/Common/灯泡.png" onclick="oncheckkn()" ></image></div>
+            <div class='img3'><image class="photo2" src="/Common/日历.png" onclick="oncheckdocu()" ></image></div>
+
+        </div>
+        
+        <div class="tag1" >
+            <image class="photo" src="/Common/消息.png" onclick="ontakePhoto()" ></image>
+             <text class="tag1">  关键词</text>
+        </div>
+
+        
+         <!-- 这个div是主体,头部是啥还没想清楚 -->
+        <div class="body1">
+          
+                <!-- <list class='list1' flex-direction=row>      这个list存放的是主题的歌词 -->
+                  <!-- <list-item for="{{lyrics}}" type="item" class='item'> -->
+                       <!-- <text>{{ lyrics[$idx] }}</text> -->
+                  <!-- </list-item> -->
+                <!-- </list> -->
+                <comp-title></comp-title>
+        </div>
+
+
+
+
+
+         <!-- 这里加入搜索,开关和搜索内容用一个div包起来 -->
+        <div class="body2">
+               <div class="tag1">
+                     <image class="photo" src="/Common/搜索.png"></image>
+                     <text class="tag1">搜索</text>
+                     
+                </div>
+
+               <text class="search">
+                <!-- 区块链:区块链是分布式数据存储、点对点传输、共识机制、加密算法等计算机技术的新型应用模式。
+ 强化学习:又称再励学习、评价学习或增强学习，是机器学习的范式和方法论之一 -->
+
+               </text>
+               <div class="swidiv">
+                     <text class="tags">开启</text>
+                     <switch class="switch"></switch>
+               </div>
+                 
+              
+
+        </div>>
+      
+
+
+
+        <div class="tag1" >
+            <image class="photo" src="/Common/评论.png" onclick="ontakePhoto()" ></image>
+             <text class="tag1">  记录</text>
+        </div>
+
+
+
+
+        <div class="body3">
+              
+             <list class='list2' >      <!--这个list存放的是主题的歌词-->
+              <list-item for="{{lyrics}}"type="item" class='item'>
+                    
+                   <text>{{lyrics[$idx]}}</text>
+              </list-item>
+             </list>
+        </div>
+
+
+
+         <!-- 尾部是两个按钮 -->  <!--"{{currentindex=='1'?'btn' :'btn2' }}"-->
+        <div class="tail">
+          
+              <div class="container">
+                <input class="btn"      id='a' type="button" value="开始" onclick=" startrecord()"  />
+                <input class="btn" id='b' type="button" value="结束" onclick="stoprecord()" />
+                
+              </div>
+        </div>
+  </div>
+</template>
+
+<script> 
+import media from '@system.media'
+import record from '@system.record'
+import audio from '@system.audio'
+import fetch from '@system.fetch'
+import router from '@system.router'
+//import marquee from '../node_modules/vue-marquee-ho/dist/vue-marquee.min.js'
+
+
+export default {
+   
+  private: {
+    text: 'hhh..',
+    className: 'text-gray',
+    currentindex: undefined,
+    lyrics:[]/*将要拿到歌词是个数组*/,
+    test:'我很好\n不是吗',
+    here:'ori'
+  },
+  /**
+   * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+   * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+   */
+
+    
+
+   onInit(){
+    
+  fetch.fetch({
+    //url:'http://geci.me/api/lyric/海阔天空/Beyond',
+    url:"http://s.geci.me/lrc/187/18757/1875769.lrc",
+    responseType: 'text',
+    success:res =>{
+      this.text= 'nihao'
+        //const data=JSON.parse(res)
+       this.text= res
+       //this.lyrics=data.split('\n')
+       //this.lyrics=this.text.split('\n')
+       this.split1(JSON.stringify(this.text))
+       //this.lyrics=this.text.split('\n')
+  
+    },
+    fail: function(data, code) {
+      this.text='失败'
+    console.log(`handling fail, errMsg = ${data}`)
+    console.log(`handling fail, errCode = ${code}`)
+  }
+  })
+  
+ // this.lyrics='${text}'
+  
+  },
+
+
+split1(text){
+  this.lyrics=text.split('\\r\\n')
+},
+
+
+
+
+oncheckkn(){
+
+  router.push ({
+      uri: '/pic'
+    })
+},
+
+
+
+
+
+
+
+
+  ontakePhoto(){
+    
+    media.takePhoto({
+  success: function(data) {
+    console.log(`handling success: ${data.uri}`)
+  },
+  fail: function(data, code) {
+    console.log(`handling fail, code = ${code}`)
+  }                  
+})},
+
+
+
+
+oncheckdocu(){
+// 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+this.here='arive'
+router.push ({
+      uri: '/docu'
+    })
+
+},
+
+
+
+
+
+ changered(){
+  this.className = 'text-red'
+ },
+
+
+  
+
+
+
+
+  startrecord(){
+    
+    
+      console.log('record')
+      /*在这里开始录音*/
+      record.start({
+      
+
+  duration: 10000,
+  sampleRate: 8000,
+  numberOfChannels: 1,
+  encodeBitRate: 16000,
+  format: 'aac',
+  success: function(data) {
+    /*录音停止后返回data*/
+    console.log(`得到的uri是${data.uri}`)
+    audio.src=data.uri   //录音完毕马上返回audio.src
+  },
+  /*失败的话打印错误码201*/
+  fail: function(data, code) {
+    console.log(`handling fail, code = ${code}`)
+  }
+})},
+
+
+
+stoprecord(){
+  //currentindex='2'
+      console.log(`record stop`)
+       record.stop() 
+       console.log(`record stop HERE`)
+    },
+
+
+
+
+
+
+
+
+   
+}
+</script>
+
+<style>
+  .tags{
+    width:500px;
+    margin-left: 600px;
+    margin-bottom: 45px;
+  }
+  .switch{
+   
+    width: 80px;
+    
+  }
+  .swidiv{
+    height: 30%;
+    width:100%;
+
+  }
+  .search{
+   height: 70%;
+   width:100%;
+   background-color: #f0f0f0;
+  }
+  .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+ .item{
+
+   margin:0 auto
+ }
+ .tag1{
+   margin-left:0px;
+   /*background-color:blue;*/
+   display:flex;
+ }
+
+  .list1{
+    width: 8000px;
+    height: 40%;
+    background-color:#f0f0f0;
+  }
+  .list2{
+    width: 1000px;
+    height: 60%;
+    background-color:#f0f0f0;
+  }
+  
+  .img1{
+    width:10%;
+  }
+  .img2{
+    width:10%;
+  }
+  .img3{
+    width:80%;
+  }
+  .headtext{
+    width:20%;
+  }
+  .htxt{
+    margin-bottom: 15px;
+    font-style:normal;
+
+  }
+  .photo{
+    width:50px;
+    height: 50px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  .photo1{
+    width:50px;
+    height: 50px;
+    margin-left: 40px;
+    margin-bottom: 20px;
+  }
+  .photo2{
+    width:50px;
+    height: 50px;
+    margin-left: 530px;
+    margin-bottom: 20px;
+  }
+  .head{
+    width: 100%;
+    height: 7%;
+    background-color:white/*#DC143C*/;
+    margin-top: 0px;
+
+  }
+  .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 1000px;
+  }
+
+  .title {
+    font-size: 40px;
+    text-align: center;
+    margin: 50% auto;
+  }
+  .body1{
+    margin-top: 0px;
+    width: 100%;
+    height: 20%;
+    border-radius: 43px;
+
+  }
+  .body2{
+    width: 100%;
+    height: 40%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .body3{
+    width: 100%;
+    height: 40%;
+    border-radius: 43px;
+  }
+  .switch{
+    width:100% ;
+    height: 50%;
+  }
+  
+  .tail{
+    width: 100%;
+    height: 20%;
+  }
+  .container{
+    width: 1000px;
+    height: 200px;
+    margin: 0px auto;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+   /* background-color: aquamarine;*/
+  }
+  .btn{
+    width:300px;
+    height:100px ;
+    margin: 0 10px;
+    border-radius: 43px;
+    background-color:#DC143C;
+    color: #ffffff;
+  }
+  .text-gray {
+    background-color:#DC143C;
+  }
+  .text-red {
+    color:#DC143C;
+  }
+  .btn2{
+    width:200px;
+    height:100px ;
+    margin: 0 10px;
+    border-radius: 43px;
+    background-color:#DC143C;
+    color: #ffffff;
+  }
+  
+  
+
+</style>

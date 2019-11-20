@@ -1,0 +1,73 @@
+<template>
+        <!-- template里只能有一个根节点 -->
+       
+      <!--跑马灯 Linyufan.com-->
+         <div class="marquee_container" >
+               <text class="marquee_text">一个人活着就是为了让更多的人更好的活着！</text>
+         </div>
+    <!--跑马灯-->
+  
+</template>
+      
+      <script>
+      import router from '@system.router'
+      
+      export default {
+        // 页面级组件的数据模型，影响传入数据的覆盖机制：private内定义的属性不允许被覆盖
+        private: {
+          title: '欢迎使用智能笔记',
+          margin:100
+        },
+        routeDetail () {
+          // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+          router.push ({
+            uri: '/DemoDetail'
+          })
+        },
+      
+      
+        onInit(){
+        console.log(`zaiheli`)
+      }
+      }
+      
+      
+      
+      
+      </script>
+      
+      <style>
+        /*首页跑马灯效果*/
+@keyframes around {
+ from {
+  margin-left: 100%;
+ }
+ to {
+  /* var接受传入的变量 */
+  margin-left:  99%;
+ }
+ }
+  
+.marquee_container{
+ background-color: #fe4655;
+ height: 50px;
+ line-height: 44px;
+ position: relative;
+ width: 100%;
+ margin-top:0px;
+}
+
+.marquee_text{
+ color:#fff;
+ font-size: 28px;
+ /*display: inline-block;*/
+ /*white-space: nowrap;*/
+ animation-name: around;
+ animation-duration: 10s; /*过渡时间*/
+ animation-iteration-count: infinite;
+ animation-timing-function:linear;
+}
+/*首页跑马灯效果*/
+
+      </style>
+      

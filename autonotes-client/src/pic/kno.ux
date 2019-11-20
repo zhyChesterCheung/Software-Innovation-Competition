@@ -1,0 +1,89 @@
+<template>
+        <!-- template里只能有一个根节点 -->
+        <div class="demo-page">
+            <div class="outer"><text class="kno" >知识图谱<text></div>
+            <image src="/Common/知识.png" class="pic"> </image>
+        </div>
+</template>
+      
+
+
+
+
+      <script> 
+      import media from '@system.media'
+      import record from '@system.record'
+      import audio from '@system.audio'
+      import fetch from '@system.fetch'
+      //import marquee from '../node_modules/vue-marquee-ho/dist/vue-marquee.min.js'
+      
+      
+      export default {
+         
+        private: {
+          text: 'hhh..',
+          className: 'text-gray',
+          currentindex: undefined,
+          lyrics:[]/*将要拿到歌词是个数组*/,
+          test:'我很好\n不是吗',
+          print:undefined,
+          print2:undefined
+        },
+       
+       
+       
+        onInit(){
+        // var txt=
+
+        },
+
+
+        change(){
+          console.log('changetored')
+          this.print='打印'
+          this.print2=this.$element('text').style
+     
+         }}
+
+
+        /**
+         * 当用户点击菜单按钮时触发，调用app中定义的方法showMenu
+         * 注意：使用加载器测试`创建桌面快捷方式`功能时，请先在`系统设置`中打开`应用加载器`的`桌面快捷方式`权限
+         */
+      
+          
+      
+        
+          
+      
+      </script>
+      
+      <style>
+    .demo-page {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+     .outer{
+
+       width: 100%;
+       height:20%;
+       justify-content: center;
+    align-items: center;
+     }
+     .kno{
+         
+         height: 40%;
+         font-size: 100px;
+         margin: 0 AUTO;
+
+     }
+     .pic{
+
+         width: 100%;
+         height: 60%;
+         object-fit: contain;
+         margin: 0 auto;
+     }
+      </style>
+      
